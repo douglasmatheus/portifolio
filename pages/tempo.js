@@ -11,16 +11,19 @@ function Tempo(props) {
   )
 }
 
-export function getStaticProps() {
-  console.log('> Passando pelo getStaticPros();')
+export async function getStaticProps() {
+  console.log('> Passando pelo getStaticPros();');
   const staticDate = new Date();
   const staticDateString = staticDate.toGMTString();
 
   return {
     props: {
       staticDateString
-    }
+    },
+    revalidate: 1
   }
 }
+
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 export default Tempo;
